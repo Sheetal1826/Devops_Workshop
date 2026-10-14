@@ -1,21 +1,415 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple DevOps Application</title>
-</head>
-<body>
-    <h1>Welcome to My DevOps Application!</h1>
-    <p>This is a simple web application.</p>
-    <p>Version 1.0</p>
 
-    <button onclick="showMessage()">Click Me</button>
+    <title>DevOps | Innovation Starts Here</title>
 
-    <script>
-        function showMessage() {
-            alert("DevOps Application is working!");
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-    </script>
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #050b1a;
+            color: white;
+            line-height: 1.6;
+        }
+
+        /* Navigation bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(5, 11, 26, 0.85);
+            border-bottom: 1px solid rgba(0, 195, 255, 0.2);
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #38d9ff;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #e0e7ff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #38d9ff;
+        }
+
+        /* Hero section with background image */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            padding: 80px 8%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(5, 11, 26, 0.95) 0%,
+                    rgba(5, 11, 26, 0.78) 48%,
+                    rgba(5, 11, 26, 0.25) 100%
+                ),
+                url('background.png');
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .hero-content {
+            max-width: 650px;
+            animation: fadeIn 1.2s ease-in-out;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 7px 16px;
+            border: 1px solid #38d9ff;
+            border-radius: 30px;
+            color: #38d9ff;
+            font-size: 13px;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 6vw, 72px);
+            line-height: 1.15;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #38d9ff;
+            text-shadow: 0 0 25px rgba(56, 217, 255, 0.3);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #c5d2e8;
+            max-width: 570px;
+            margin-bottom: 35px;
+        }
+
+        /* Buttons */
+        .buttons {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .primary-btn {
+            background: #16bde8;
+            color: #03101c;
+            border: 1px solid #16bde8;
+        }
+
+        .primary-btn:hover {
+            background: #65e5ff;
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(22, 189, 232, 0.4);
+        }
+
+        .secondary-btn {
+            color: white;
+            border: 1px solid #7185a5;
+        }
+
+        .secondary-btn:hover {
+            border-color: #38d9ff;
+            color: #38d9ff;
+            transform: translateY(-3px);
+        }
+
+        /* Technology section */
+        .technologies {
+            padding: 75px 8%;
+            text-align: center;
+            background: #080f20;
+        }
+
+        .section-title {
+            font-size: 34px;
+            margin-bottom: 15px;
+        }
+
+        .section-title span {
+            color: #38d9ff;
+        }
+
+        .section-description {
+            color: #aab9d1;
+            margin-bottom: 40px;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .tech-card {
+            padding: 30px 20px;
+            background: rgba(18, 31, 55, 0.75);
+            border: 1px solid rgba(56, 217, 255, 0.18);
+            border-radius: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-7px);
+            border-color: #38d9ff;
+            box-shadow: 0 8px 30px rgba(0, 195, 255, 0.1);
+        }
+
+        .tech-icon {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .tech-card h3 {
+            color: #67e5ff;
+            margin-bottom: 10px;
+        }
+
+        .tech-card p {
+            color: #b4c2d9;
+            font-size: 14px;
+        }
+
+        /* About section */
+        .about {
+            padding: 75px 8%;
+            text-align: center;
+            background: #050b1a;
+        }
+
+        .about p {
+            max-width: 750px;
+            margin: 20px auto 30px;
+            color: #bdc9dd;
+            font-size: 16px;
+        }
+
+        .version {
+            display: inline-block;
+            padding: 8px 18px;
+            border-radius: 25px;
+            background: rgba(56, 217, 255, 0.1);
+            border: 1px solid rgba(56, 217, 255, 0.4);
+            color: #67e5ff;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #030713;
+            border-top: 1px solid rgba(56, 217, 255, 0.15);
+            color: #91a2bc;
+            font-size: 14px;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile responsive design */
+        @media (max-width: 768px) {
+            nav {
+                padding: 18px 5%;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                gap: 18px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                min-height: 75vh;
+                padding: 65px 6%;
+                background-position: 62% center;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .technologies,
+            .about {
+                padding: 55px 6%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">⚡ DevOps.</div>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#technologies">Technologies</a>
+            <a href="#about">About</a>
+        </div>
+    </nav>
+
+    <!-- Main hero section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+
+            <div class="tag">INNOVATE · AUTOMATE · DEPLOY</div>
+
+            <h1>
+                Build Better.<br>
+                Deploy <span>Smarter.</span>
+            </h1>
+
+            <p>
+                Welcome to my DevOps application — a simple web project
+                exploring modern web development, automation, and
+                deployment through GitHub.
+            </p>
+
+            <div class="buttons">
+                <a href="#technologies" class="btn primary-btn">
+                    Explore Project →
+                </a>
+
+                <a
+                    href="https://github.com/Sheetal1826/Devops_Workshop"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn secondary-btn">
+                    View on GitHub ↗
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Technologies -->
+    <section class="technologies" id="technologies">
+
+        <h2 class="section-title">
+            Technologies <span>Used</span>
+        </h2>
+
+        <p class="section-description">
+            The building blocks behind this web application.
+        </p>
+
+        <div class="tech-grid">
+
+            <div class="tech-card">
+                <div class="tech-icon">🌐</div>
+                <h3>HTML5</h3>
+                <p>
+                    Structures the content and sections of the website.
+                </p>
+            </div>
+
+            <div class="tech-card">
+                <div class="tech-icon">🎨</div>
+                <h3>CSS3</h3>
+                <p>
+                    Creates the visual design, responsive layout,
+                    animations, and background effects.
+                </p>
+            </div>
+
+            <div class="tech-card">
+                <div class="tech-icon">🚀</div>
+                <h3>GitHub Pages</h3>
+                <p>
+                    Hosts the static website online so it can be
+                    accessed through a public URL.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+
+        <h2 class="section-title">
+            About This <span>Project</span>
+        </h2>
+
+        <p>
+            This Simple DevOps Application is a learning project
+            demonstrating HTML, CSS, Git version control, GitHub
+            repository management, and website hosting with GitHub Pages.
+        </p>
+
+        <div class="version">Project Version 2.0</div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Built with 💙 using HTML & CSS</p>
+        <p>Simple DevOps Application · 2026</p>
+    </footer>
+
 </body>
+
 </html>
